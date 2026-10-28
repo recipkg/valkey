@@ -5,7 +5,7 @@ format = "recipkg/1"
 
 [package]
 name = "valkey"
-version = "0.1.1"
+version = "0.1.2"
 kind = "software"
 description = "Valkey 数据结构服务器的重建配方；当前仍在提取。"
 entry = "BUILD_PROMPT.md"
