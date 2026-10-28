@@ -1,0 +1,11 @@
+# 验收与限制
+
+样本测试不连接现有服务，也不使用真实数据。指定候选服务端，运行：
+
+```sh
+RECIPKG_TEST_VALKEY_SERVER=/absolute/path/to/valkey-server python3 -m unittest discover -s tests -p test_valkey.py -v
+```
+
+在 [standard-library-verification](https://github.com/recipkg/standard-library-verification) 仓库执行。显式指定的路径不存在或启动失败应报错；未指定目标会跳过，跳过不是通过。测试检查原始二进制键和值、类型错误和即时过期，两个连接下的 WATCH 冲突和正常事务，用户认证与拒绝写入，以及显式快照后的正常重启。验证程序只启动自己创建的 Unix socket 服务并清理进程和临时目录；平台必须支持 Unix socket。
+
+完整验收还需补充协议、数据结构和命令、ACL 与 TLS、并发、插件、复制、故障、崩溃恢复、持久化损坏、网络、目标平台和实测性能等合同。先补全未观察行为和可复现验证，再在独立实现上执行；不允许把四个样本或 `recipkg check` 当作完整兼容、安全或数据持久性保证。
